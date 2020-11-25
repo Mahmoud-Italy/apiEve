@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Repository\Event as EventRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventStoreRequest;
@@ -83,48 +82,6 @@ class EventController extends Controller
             return response()->json(['message' => ''], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Unable to delete entry, '. $e->getMessage()], 500);
-        }
-    }
-
-    public function active($id)
-    {
-        try {
-            $row = Event::query();
-
-            if(strpos($id, ',') !== false) {
-                foreach(explode(',',$id) as $sid) {
-                    $ids[] = $sid;
-                }
-                $row->whereIN('id', $ids);
-            } else {
-                $row->where('id', $id);
-            }   
-            $row->update(['status' => true]);
-
-            return response()->json(['message' => ''], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
-        }
-    }
-
-    public function inactive($id)
-    {
-        try {
-            $row = Event::query();
-
-            if(strpos($id, ',') !== false) {
-                foreach(explode(',',$id) as $sid) {
-                    $ids[] = $sid;
-                }
-                $row->whereIN('id', $ids);
-            } else {
-                $row->where('id', $id);
-            }   
-            $row->update(['status' => false]);
-
-            return response()->json(['message' => ''], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 }
