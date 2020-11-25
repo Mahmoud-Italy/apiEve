@@ -10,7 +10,7 @@
         "larafast/fastapi": "^2.2",
         "lararoutes/lumen-custom-routes": "^1.1",
         "larasecure/ip-blocker": "^2.2",
-        "laravel/lumen-framework": "^6.3",
+        "laravel/lumen-framework": "^7.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "spatie/laravel-permission": "^3.13",
         "tymon/jwt-auth": "^1.0@dev",

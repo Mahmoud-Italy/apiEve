@@ -25,7 +25,7 @@ class Imageable extends Model
             }
         }
         $fileName     = date('Y-m-d-h-i-s').'-'.$key.uniqid().'.'.$fileType;
-        Storage::disk('public')->put('uploads/'.self::plural($folder).'/'.$fileName, $imageDecoded);
+        Storage::disk('public')->put('uploads/'.$fileName, $imageDecoded);
         return $fileName;
     }
 
@@ -42,14 +42,5 @@ class Imageable extends Model
     public static function baseURL()
     {
         return request()->root() . '/uploads/';
-    }
-
-    public static function plural($singular = '')
-    {
-        if ( substr($singular, -1) == 'y') {
-            return str_replace('y','ies',$singular);
-        } else {
-            return $singular.'s';
-        }
     }
 }

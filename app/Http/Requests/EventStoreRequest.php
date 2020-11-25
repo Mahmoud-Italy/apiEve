@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Urameshibr\Requests\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
-class RegisterRequest extends FormRequest
+class EventStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,13 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
-            'name'     => 'required',
-            'email'    => 'required|unique:users,email',
-            'password' => 'required'
+            'name'       => 'required',
+            'venue'      => 'required',
+            'latitude'   => 'required',
+            'longitude'  => 'required',
+            'start_date' => 'required|date',
+            'end_date'   => 'required|date|after_or_equal:start_date'
         ];
     }
 

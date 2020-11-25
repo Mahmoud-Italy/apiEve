@@ -26,6 +26,7 @@ class Routes
     {
       $this->app->get($uri, $controller.'@index');
       $this->app->post($uri, $controller.'@store');
+      $this->app->get($uri.'/me', $controller.'@me');
       $this->app->get($uri.'/{id}', $controller.'@show');
       $this->app->put($uri.'/{id}', $controller.'@update');
       $this->app->delete($uri.'/{id}', $controller.'@destroy');
@@ -39,16 +40,6 @@ class Routes
       // feel free to add more
     }
 
-
-    function exploreResource($uri, $controller)
-    {
-      $this->app->get($uri.'/totalVisitors/{days}', $controller.'@visitors');
-      $this->app->get($uri.'/totalPages/{days}', $controller.'@pages');
-      $this->app->get($uri.'/totalMessages/{days}', $controller.'@messages');
-      $this->app->get($uri.'/totalUsers/{days}', $controller.'@users');
-      $this->app->get($uri.'/lineChart/{type}', $controller.'@lineChart');
-      $this->app->get($uri.'/pieChart/{days}', $controller.'@pieChart');
-    }
 
     function artisanResource($uri, $controller)
     {

@@ -83,10 +83,12 @@ $app->middleware([
 ]);
 
 $app->routeMiddleware([
+    'belongsTo'  => App\Http\Middleware\BelongsTo::class,
     'auth'       => App\Http\Middleware\Authenticate::class,
     'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
     'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
 ]);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -110,12 +112,6 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Larafast\Fastapi\FastapiServiceProvider::class);
 $app->register(Urameshibr\Providers\FormRequestServiceProvider::class);
-
-$app->register(Illuminate\Mail\MailServiceProvider::class);
-$app->configure('mail');
-$app->alias('mailer', Illuminate\Mail\Mailer::class);
-$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
-$app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 
 /*
 |--------------------------------------------------------------------------
