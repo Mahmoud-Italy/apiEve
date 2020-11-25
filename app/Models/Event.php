@@ -36,20 +36,8 @@ class Event extends Model
           if(isset($value['search']) && $value['search']) {
             $obj->where(function($q) use ($value) {
                 $q->where('name', 'like', '%'.$value['search'].'%');
-                $q->orWhere('venue', 'like', '%'.$value['search'].'%');
                 $q->orWhere('id', $value['search']);
               });
-          }
-
-
-          // order By..
-          if(isset($value['order']) && $value['order']) {
-            if($value['order_by'] == 'name')
-              $obj->orderBy('name', $value['order']);
-            else if ($value['order_by'] == 'created_at')
-              $obj->orderBy('created_at', $value['order']);
-            else
-              $obj->orderBy('id', $value['order']);
           }
 
           // feel free to add any query filter as much as you want...

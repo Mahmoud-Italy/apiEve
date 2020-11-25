@@ -50,28 +50,4 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     public function image() {
         return $this->morphOne(Imageable::class, 'imageable')->select('image_url');
     }
-
-    public static function fetchData($value='')
-    {
-        // this way will fire up speed of the query
-        $obj = self::query();
-
-            if(isset($value['search']) && $value['search']) {
-                $obj->where(function($q){
-                    $q->where('name', 'like','%'.$value['search'].'%');
-                    $q->orWhere('email', 'like', '%'.$value['search'].'%');
-                    $q->orWhere('id', $value['search']);
-                });
-            }
-            
-            if(isset($value['order']) && $value['order']) {
-                $obj->orderBy('id', $value['order']);
-            } else {
-                $obj->orderBy('id', 'DESC');
-            }
-
-        $obj = $obj->paginate($value['paginate'] ?? 10);
-        return $obj;
-    }
-
 }
