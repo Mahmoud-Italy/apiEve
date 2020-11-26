@@ -28,7 +28,7 @@ class Event extends Model
         $obj = self::query();
 
           // grap only my data
-          if(isset($value['me']) && $value['me']) {
+          if($me) {
             $obj->where('user_id', auth()->guard('api')->user()->id);
           }
 
@@ -88,7 +88,7 @@ class Event extends Model
             return true;
         } catch (\Exception $e) {
             DB::rollback();
-            return $e;
+            return $e->getMessage();
         }
     }
 
