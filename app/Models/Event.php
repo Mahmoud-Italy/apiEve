@@ -22,7 +22,7 @@ class Event extends Model
 
 
     // fetch Data
-    public static function fetchData($value='', $me = false)
+    public static function fetchData($value='', $me=false)
     {
         // this way will fire up speed of the query
         $obj = self::query();
